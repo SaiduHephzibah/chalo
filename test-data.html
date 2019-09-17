@@ -1,0 +1,72 @@
+<html>
+<body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+  // Your web app's Firebase configuration
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyBDa-Fwa6sJGNT8mHsEb5GeoCw9q-3jou0",
+    authDomain: "test-ed6b0.firebaseapp.com",
+    databaseURL: "https://test-ed6b0.firebaseio.com",
+    projectId: "test-ed6b0",
+    storageBucket: "test-ed6b0.appspot.com",
+    messagingSenderId: "645539874808",
+    appId: "1:645539874808:web:b57843f54b0ab794ef380d"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+
+
+ 
+
+var database = firebaseConfig.database().ref().child('Tasks');
+database.once('value', function(snapshot){
+    if(snapshot.exists()){
+        var content = '';
+        var TaskTitle = snapshot.val().name;
+        var JobId= snapshot.val().age;
+
+        snapshot.forEach(function(data){
+        });
+
+        content = '<tr>';
+        content += '<td>' + TaskTitle + '</td>'; //column1
+        content += '<td>' + JobId + '</td>';//column2
+        content += '</tr>';
+    }
+
+    $('#ex-table').append(content);
+    console.log(snapshot.val());
+});
+
+
+
+
+
+</script>
+<table class="table table-striped" id="ex-table">
+    <thead class="thead-inverse">
+        <tr>
+        <th>Task Title</th>
+        <th>Category</th>
+        <th>Date</th>
+        <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="tr">
+        <td id="titleTask"></td>
+        <td id="categoryTask"></td>
+        <td id="dateTask"></td>
+        <td id="statusTask"></td>
+       </tr>
+   </tbody>
+</body>
+</html>
+
